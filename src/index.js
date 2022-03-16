@@ -4,9 +4,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+//shop connection to the app
+import ShopProvider from './context/shopContent';
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ShopProvider>
+      <App />
+    </ShopProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
