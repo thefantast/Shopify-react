@@ -3,15 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {ChakraProvider} from '@chakra-ui/react';
 
 //shop connection to the app
-import ShopProvider from './context/shopContent';
+import ShopProvider from './context/shopContext';
 
 ReactDOM.render(
   <React.StrictMode>
+  <ChakraProvider>
     <ShopProvider>
       <App />
     </ShopProvider>
+  </ChakraProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

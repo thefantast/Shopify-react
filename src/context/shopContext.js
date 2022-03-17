@@ -23,6 +23,7 @@ export class ShopProvider extends Component {
     }
 
     // get the checkout initiale when we first load the application
+    // and create the checkout
 
     componentDidMount() {
         if(localStorage.checkout_id) {
@@ -32,6 +33,7 @@ export class ShopProvider extends Component {
         }
          
     }
+    
 
     createCheckout = async () => {
         const checkout = await client.checkout.create();
@@ -40,7 +42,10 @@ export class ShopProvider extends Component {
 
     }
 
-    fetchCheckout = async (checkoutId) => {
+    //from componendDidMount we take the checkout id
+    //this fetches the checkout
+
+    fetchCheckout = (checkoutId) => {
         client.checkout
         .fetch(checkoutId)
         .then((checkout) => {
@@ -80,8 +85,23 @@ export class ShopProvider extends Component {
 
   render() {
       console.log(this.state.checkout)
+      // in ShopContext.Provider we are passing the functions with the value
     return (
-      <ShopContext.Provider>
+        
+      <ShopContext.Provider 
+        value={{...this.state,
+            
+                fetchAllProducts: this.fetchAllProducts,
+                fetchProductWithHandle: this.fetchProductWithHandle,
+                addItemtoCheckout: this.addItemtoCheckout,
+                removeLineItem: this.removeLineItem,
+                closeCart: this.closeCart,
+                openCart: this.openCart,
+                closeMenu: this.closeMenu,
+                openMenu: this.openMenu
+
+
+        }}>
             {this.props.children}
       </ShopContext.Provider>
     )
