@@ -1,5 +1,6 @@
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import NavBar from './components/NavBar';
+import Cart from './components/Cart';
 
 import Home from './Pages/Home';
 import ProductPage from './Pages/ProductPage';
@@ -11,7 +12,7 @@ function App() {
     <div className="App">
     <Router>
       <NavBar />
-    
+      <Cart />
       <Switch>
         <Route path="/products/:handle">
           <ProductPage />
