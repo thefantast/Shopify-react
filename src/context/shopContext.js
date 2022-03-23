@@ -54,8 +54,17 @@ export class ShopProvider extends Component {
 
     }
 
-    addItemtoCheckout = async () => {
+    addItemToCheckout = async (variantId, quantity ) => {
+            const lineItemsToAdd = [
+                {
+                variantId,
+                quantity: parseInt(quantity, 10),
+                }
+            ]
+            const checkout = await client.checkout.addLineItems(this.state.checkout.id, lineItemsToAdd)
+            this.setState({checkout: checkout})
 
+            this.openCart();
     }
 
     removeLineItem = async (lineItemIdsToRemove) => {
@@ -106,7 +115,7 @@ export class ShopProvider extends Component {
             
                 fetchAllProducts: this.fetchAllProducts,
                 fetchProductWithHandle: this.fetchProductWithHandle,
-                addItemtoCheckout: this.addItemtoCheckout,
+                addItemToCheckout: this.addItemToCheckout,
                 removeLineItem: this.removeLineItem,
                 closeCart: this.closeCart,
                 openCart: this.openCart,
